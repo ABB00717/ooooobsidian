@@ -22,8 +22,26 @@
 >/* remainder section */
 >```
 
-> [!tip] 我的紙上已經有程式碼為什麼滿足這三個條件，在這裡要用說明的。
+## Mutual
+行程 $P_i$ 要進入 `critical section`，必須跳出 `while` 迴圈。跳出 `while` 有兩種辦法。
 
+- `key == 0`：
+  `compare_and_swap` 在 `lock == 0` 時會讓 `key = 0`。因為它是原子操作，只有一個行程能成功。
+- `waiting[i] == false`：
+  只能由別的行程在 `exit section` 完成。
+
+因此任意時間點只有一個行程能進入 `critical section`。
+## Progress
+- `lock == 0`：
+  任何想進去的行程一定有一個可以進去（參見 Mutual）
+- `lock == 1`：
+  離開的行程在 `exit section`會：
+	- 找到下個正在等待的 $P_j$，`waiting[j] = false`，讓 $P_j$ 直接進入 `critical section`
+	- 沒有其他行程在等待，`lock = 0`。
+
+系統總可以從想進入的行程中挑一個進入 `critical section`
+## Bounded Waiting
+行程 $P_i$ 在 `exit section` 會從 `j = (i +1) % n` 開始循環尋找下個正在等待的行程。因此行程的等待上限是 `n-1`。
 ## a.
 > Please write a program for producer-consumer (i.e., bounded buffer) problem with buffer size n by using a counter.
 
@@ -55,25 +73,26 @@ while (true) {
 # b.
 > What is the race condition and does the race condition occur in the solution of (a) you wrote? Why?
 
-很可能生產者和消費者會同時操作 `count`，導致
+會有競賽條件，因為生產者和消費者能夠同時操作 `count`，而他們又不是原子操作，會有一方用過時的 `count` 覆蓋掉另一方的操作結果，造成 Lost Update。
+
 # 3.
 > For the following two threads shared x and flag
 > ![[Pasted image 20251016152014.png]]
 > How to apply Memory barrier into both threads to ensure the output must be 100?
 > Please write the program.
 
-```
+```c
 // Thread 1
-while (!flag)
-	memory_barrier()
-print x
+while (!flag);
+memory_barrier();
+print x;
 ```
 
-```
+```c
 // Thread 2
 x = 100;
-memory_barrier()
-flag = true
+memory_barrier();
+flag = true;
 ```
 
 # 4.
