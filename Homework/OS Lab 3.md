@@ -27,16 +27,54 @@
 ## a.
 > Please write a program for producer-consumer (i.e., bounded buffer) problem with buffer size n by using a counter.
 
+全域變數 `count = 0, in = 0, out = 0`
 
+```c
+// Producer Process
+while (true) {
+	// produce next_produced ..
+	while (count == n);
+	
+	buffer[in] = next_produced;
+	in = (in + 1) % n;
+    count++;
+}
+```
+
+```c
+// Consumer Process
+while (true) {
+    while (count == 0);
+
+    next_consumed = buffer[out];
+    out = (out + 1) % n;
+    count--;
+}
+```
 
 # b.
 > What is the race condition and does the race condition occur in the solution of (a) you wrote? Why?
 
+很可能生產者和消費者會同時操作 `count`，導致
 # 3.
 > For the following two threads shared x and flag
 > ![[Pasted image 20251016152014.png]]
 > How to apply Memory barrier into both threads to ensure the output must be 100?
 > Please write the program.
+
+```
+// Thread 1
+while (!flag)
+	memory_barrier()
+print x
+```
+
+```
+// Thread 2
+x = 100;
+memory_barrier()
+flag = true
+```
 
 # 4.
 > Why we need hardware solution for synchronization? Please point out two possible drawbacks of software solution for critical section problem (such as Peterson’s Solution)?
