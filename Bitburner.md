@@ -1,0 +1,6 @@
+```
+hack()
+grow()
+weaken()
+```
+

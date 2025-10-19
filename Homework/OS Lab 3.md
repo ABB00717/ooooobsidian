@@ -73,7 +73,7 @@ while (true) {
 # b.
 > What is the race condition and does the race condition occur in the solution of (a) you wrote? Why?
 
-會有競賽條件，因為生產者和消費者能夠同時操作 `count`，而他們又不是原子操作，會有一方用過時的 `count` 覆蓋掉另一方的操作結果，造成 Lost Update。
+只要最終結果取決於不可預測的執行順序，都滿足競賽條件。故上述程式會有競賽條件，因為生產者和消費者能夠同時操作 `count`，而他們又不是原子操作，會有一方用過時的 `count` 覆蓋掉另一方的操作結果，造成 Lost Update。
 
 # 3.
 > For the following two threads shared x and flag
