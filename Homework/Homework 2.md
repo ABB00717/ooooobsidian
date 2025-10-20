@@ -3,27 +3,24 @@
 
 ```c
 // array.c
+#include <stddef.h>
 
-void *access_row(void *arr, size_t size,
-        int i, int j, int k,
-        int m, int n) {
-    size_t offset_ele = i * m * n + j * n + k;
+void *access_row(void *arr, size_t size, int dim1_i, int dim2_i, int dim3_i, int dim2_l, int dim3_l) {
+    size_t offset_ele = dim1_i * dim2_l * dim3_l + dim2_i * dim3_l + dim3_i;
 
     size_t offset_bytes = offset_ele * size;
-    char *byte_arr = (char*)arr;
+    char *byte_arr = (char *)arr;
 
-    return (void*)(byte_arr + offset_bytes);
+    return (void *)(byte_arr + offset_bytes);
 }
 
-void *access_col(void *arr, size_t size,
-        int i, int j, int k,
-        int l, int m) {
-    size_t offset_ele = k * m * l + j * l + i;
+void *access_col(void *arr, size_t size, int dim1_i, int dim2_i, int dim3_i, int dim1_l, int dim2_l) {
+    size_t offset_ele = dim3_i * dim2_l * dim1_l + dim2_i * dim1_l + dim1_i;
 
     size_t offset_bytes = offset_ele * size;
-    char *byte_arr = (char*)arr;
+    char *byte_arr = (char *)arr;
 
-    return (void*)(byte_arr + offset_bytes);
+    return (void *)(byte_arr + offset_bytes);
 }
 
 ```
