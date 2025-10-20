@@ -9,23 +9,29 @@ Example:
 ---
 
 # Core Value
-# Interested Areas
+- IDK man
+
+# Interested Area
 - Information
-	- Literature
+	- 閱讀
 		- "The Last Question"
-		- "The Metamorphosis of Prime Intellect"
-		- and writing notes, writing makes me feel alive
-	- Computer
-	- Music
+		- "The Information: A History, A Theory, A Flood"
+	- 專輯
 		- "Queens of the Stone Age - Songs for the Deaf"
 		- "Interpol - Turn on the Bright Light"
-		- "Disasterpiece - Hyper Light Drifter OST"
-	- Philosophy
+		- "Soundgarden - Superunknown"
+	- 遊戲
+		- Hyper Light Drifter
+		- Sekiro
+		- Minecraft
+	- 漫畫
+		- 晚安布布
+		- 驀然回首
+		- 新世紀福音戰士
 
 - Crafting
 	- Programming
-		- I consider Programming as a kind of "creative writing".
+	- Writing
+		- Write about anything, writing makes me feel alive
 
 But currently, I'm not particularly good at any of it. It's still too wide, gotta narrow it down.
-
----
