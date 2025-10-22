@@ -23,3 +23,4 @@ But there is another substantial difference between variables with _static stor
 - Variables with _automatic storage_ (such as local variables) that are not explicitly initialized are left uninitialized, and thus have an undetermined value.
 
 
+The `elements` field within square brackets `[]`, representing the number of elements in the array, must be a _constant expression_, since arrays are blocks of static memory whose size must be determined at compile time, before the program runs.
